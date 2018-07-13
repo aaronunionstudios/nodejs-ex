@@ -105,4 +105,28 @@ initDb(function(err){
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
 
+
+
+const Discord = require('discord.js')
+const client = new Discord.Client()
+const config = require('./config.json')
+const phrases = require('./phrases')
+
+client.on('message', message => {
+  const command = message.content.toLowerCase();
+
+  if (command.includes('in terms of')) {
+    message.channel.send('SASS')
+  }
+
+  if (command.includes('miyagid')) {
+    message.channel.send(phrases[Math.floor(Math.random() * phrases.length)])
+  }
+});
+
+client.login(config.token)
+
+
+
+
 module.exports = app ;
